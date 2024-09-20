@@ -1,7 +1,13 @@
 import { Controller, Get, UseGuards, Request, Query } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ApiTags, ApiBearerAuth, ApiQuery, ApiResponse, ApiOperation } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiBearerAuth,
+  ApiQuery,
+  ApiResponse,
+  ApiOperation,
+} from '@nestjs/swagger';
 
 @ApiTags('Transactions')
 @ApiBearerAuth()
@@ -11,12 +17,17 @@ export class TransactionsController {
 
   @Get('history')
   @UseGuards(JwtAuthGuard)
-  @ApiOperation({ summary: 'Get paginated transaction history for the logged-in user' })
+  @ApiOperation({
+    summary: 'Get paginated transaction history for the logged-in user',
+  })
   @ApiQuery({ name: 'page', required: false, example: 1 })
-  @ApiQuery({ name: 'limit', required: false, example: 10 })
+  @ApiQuery({ name: 'limit', required: false, example: 50 })
   @ApiQuery({ name: 'startDate', required: false, example: '2023-01-01' })
   @ApiQuery({ name: 'endDate', required: false, example: '2023-12-31' })
-  @ApiResponse({ status: 200, description: 'Transaction history retrieved successfully' })
+  @ApiResponse({
+    status: 200,
+    description: 'Transaction history retrieved successfully',
+  })
   async getTransactions(
     @Request() req,
     @Query('page') page: number,
@@ -24,8 +35,9 @@ export class TransactionsController {
     @Query('startDate') startDate: string,
     @Query('endDate') endDate: string,
   ) {
+    const userId = req.user.userId;
     return this.transactionsService.getTransactionHistory(
-      req.user.id,
+      userId,
       page,
       limit,
       startDate,
