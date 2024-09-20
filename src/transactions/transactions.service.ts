@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
+import { Status } from '@prisma/client';
 
 @Injectable()
 export class TransactionsService {
@@ -11,9 +12,16 @@ export class TransactionsService {
       .map((_, i) => ({
         userId,
         reference: `REF${i + 1}-${userId.slice(0, 6)}`,
-        amount: Math.random() * 1000,
+        amount: Math.floor(Math.random() * 100) * 1000,
         date: new Date(Date.now() - i * 86400000), // Spread over the last days
         type: i % 2 === 0 ? 'CREDIT' : 'DEBIT',
+        status:
+          i % 3 === 0
+            ? Status.SUCCESS
+            : i % 2 === 0
+              ? Status.PENDING
+              : Status.FAILED,
+        remark: i % 2 === 0 ? 'Transaction processed successfully' : null,
       }));
 
     await this.prisma.transaction.createMany({ data: transactions });
@@ -55,13 +63,13 @@ export class TransactionsService {
 
     // Return the transactions along with pagination details
     return {
-      transactions,
       pagination: {
         currentPage: page,
         totalPages,
         totalTransactions,
         limit,
       },
+      transactions,
     };
   }
 }

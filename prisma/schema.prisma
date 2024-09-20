@@ -23,10 +23,18 @@ model User {
 
 model Transaction {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @db.ObjectId
   reference String
-  amount    Float
+  amount    Int
   date      DateTime @default(now())
   type      String
-  user      User     @relation(fields: [userId], references: [id])
+  status    Status
+  remark    String?
+  user      User     @relation(references: [id], fields: [userId])
+  userId    String   @db.ObjectId
+}
+
+enum Status {
+  PENDING
+  SUCCESS
+  FAILED
 }
