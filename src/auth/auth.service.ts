@@ -30,7 +30,6 @@ export class AuthService {
       },
     });
 
-    // Automatically create 200 random transactions for this user
     await this.transactionsService.bulkCreateTransactions(newUser.id, 200);
 
     return {

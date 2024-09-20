@@ -22,7 +22,7 @@ export class TransactionsService {
   async getTransactionHistory(
     userId: string,
     page: number = 1,
-    limit: number = 10,
+    limit: number = 50,
     startDate?: string,
     endDate?: string,
   ) {
