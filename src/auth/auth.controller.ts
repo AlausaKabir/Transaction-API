@@ -1,12 +1,22 @@
 import { Controller, Post, Body, BadRequestException } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { ApiTags, ApiOperation, ApiBody, ApiResponse } from '@nestjs/swagger';
+import { LoginDto } from './dto/auth.dto';
 
+
+
+
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
+  
 
   //!REGISTRATION ENDPOINT
   //   @Post('signup')
+  // @ApiOperation({ summary: 'Register a new user' })
+  // @ApiBody({ type: SignupDto }) // DTO for request body
+  // @ApiResponse({ status: 201, description: 'User registered successfully' })
   //   async signup(
   //     @Body('email') email: string,
   //     @Body('password') password: string,
@@ -15,7 +25,11 @@ export class AuthController {
   //     return result;
   //   }
 
-  @Post('login')
+
+@Post('login')
+@ApiOperation({ summary: 'Login with email and password' })
+@ApiBody({ type: LoginDto }) // DTO for request body
+@ApiResponse({ status: 200, description: 'User logged in successfully' })
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
