@@ -13,11 +13,11 @@ export class AuthController {
   @ApiOperation({ summary: 'Register a new user' })
   @ApiBody({ type: SignupDto })
   @ApiResponse({ status: 201, description: 'User registered successfully' })
-  async signup(
-    @Body('email') email: string,
-    @Body('password') password: string,
-  ) {
-    const result = await this.authService.signup(email, password);
+  async signup(@Body() signupDto: SignupDto) {
+    const result = await this.authService.signup(
+      signupDto.email,
+      signupDto.password,
+    );
     return result;
   }
 
@@ -25,11 +25,11 @@ export class AuthController {
   @ApiOperation({ summary: 'Login with email and password' })
   @ApiBody({ type: LoginDto })
   @ApiResponse({ status: 200, description: 'User logged in successfully' })
-  async login(
-    @Body('email') email: string,
-    @Body('password') password: string,
-  ) {
-    const user = await this.authService.validateUser(email, password);
+  async login(@Body() loginDto: LoginDto) {
+    const user = await this.authService.validateUser(
+      loginDto.email,
+      loginDto.password,
+    );
     if (!user) {
       throw new BadRequestException('Invalid credentials');
     }
