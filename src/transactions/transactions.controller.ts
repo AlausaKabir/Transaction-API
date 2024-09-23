@@ -15,6 +15,7 @@ import {
   ApiResponse,
   ApiOperation,
 } from '@nestjs/swagger';
+import { Status } from '@prisma/client';
 
 @ApiTags('Transactions')
 @ApiBearerAuth()
@@ -31,6 +32,7 @@ export class TransactionsController {
   @ApiQuery({ name: 'limit', required: false, example: 50 })
   @ApiQuery({ name: 'startDate', required: false })
   @ApiQuery({ name: 'endDate', required: false })
+  @ApiQuery({ name: 'status', required: false, enum: Status })
   @ApiResponse({
     status: 200,
     description: 'Transaction history retrieved successfully',
@@ -41,6 +43,7 @@ export class TransactionsController {
     @Query('limit', new ParseIntPipe()) limit: number = 50,
     @Query('startDate') startDate: string,
     @Query('endDate') endDate: string,
+    @Query('status') status?: Status,
   ) {
     const userId = req.user.userId;
 
@@ -48,6 +51,7 @@ export class TransactionsController {
       userId,
       page,
       limit,
+      status,
       startDate,
       endDate,
     );

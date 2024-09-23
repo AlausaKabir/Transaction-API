@@ -45,6 +45,7 @@ export class TransactionsService {
     userId: string,
     page: number = 1,
     limit: number = 50,
+    status: Status,
     startDate?: string,
     endDate?: string,
   ) {
@@ -56,6 +57,10 @@ export class TransactionsService {
         gte: new Date(startDate),
         lte: new Date(endDate),
       };
+    }
+
+    if (status) {
+      where.status = status;
     }
 
     const totalTransactions = await this.prisma.transaction.count({
