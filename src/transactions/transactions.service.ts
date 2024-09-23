@@ -13,7 +13,7 @@ export class TransactionsService {
         userId,
         reference: `REF${i + 1}-${userId.slice(0, 6)}`,
         amount: Math.floor(Math.random() * 100) * 1000,
-        date: new Date(Date.now() - i * 86400000), // Spread over the last days
+        date: new Date(Date.now() - 7 * 86400000), // Spread over the last day 7 days
         type: i % 2 === 0 ? 'CREDIT' : 'DEBIT',
         status:
           i % 3 === 0
@@ -37,7 +37,6 @@ export class TransactionsService {
     const skip = (page - 1) * limit;
     const where: any = { userId };
 
-    // Filter by date range if provided
     if (startDate && endDate) {
       where.date = {
         gte: new Date(startDate),
@@ -45,12 +44,10 @@ export class TransactionsService {
       };
     }
 
-    // Fetch the total number of transactions for this user (with filters if any)
     const totalTransactions = await this.prisma.transaction.count({
       where,
     });
 
-    // Fetch the transactions for the current page
     const transactions = await this.prisma.transaction.findMany({
       where,
       skip,
@@ -58,10 +55,8 @@ export class TransactionsService {
       orderBy: { date: 'desc' },
     });
 
-    // Calculate the total number of pages
     const totalPages = Math.ceil(totalTransactions / limit);
 
-    // Return the transactions along with pagination details
     return {
       pagination: {
         currentPage: page,
