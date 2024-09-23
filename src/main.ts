@@ -24,7 +24,9 @@ async function bootstrap() {
   await app.listen(keys.port, () => {
     Logger.log(`
       #################################################
-        🛡  Recruitment API is live and running! 
+        🛡  ${keys.appName} API is running! Access URLs:
+        🏠 HomePage:      ${keys.appUrl}
+        📄 Documentation: ${keys.appUrl}/api-docs
         #################################################
       `);
   });
