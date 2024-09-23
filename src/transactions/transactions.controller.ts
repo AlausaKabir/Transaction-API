@@ -29,8 +29,8 @@ export class TransactionsController {
   })
   @ApiQuery({ name: 'page', required: false, example: 1 })
   @ApiQuery({ name: 'limit', required: false, example: 50 })
-  @ApiQuery({ name: 'startDate', required: false, example: '2023-01-01' })
-  @ApiQuery({ name: 'endDate', required: false, example: '2023-12-31' })
+  @ApiQuery({ name: 'startDate', required: false })
+  @ApiQuery({ name: 'endDate', required: false })
   @ApiResponse({
     status: 200,
     description: 'Transaction history retrieved successfully',
