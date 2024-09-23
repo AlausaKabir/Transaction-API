@@ -9,20 +9,34 @@ export class TransactionsService {
   async bulkCreateTransactions(userId: string, count: number) {
     const transactions = Array(count)
       .fill(null)
-      .map((_, i) => ({
-        userId,
-        reference: `REF${i + 1}-${userId.slice(0, 6)}`,
-        amount: Math.floor(Math.random() * 100) * 1000,
-        date: new Date(Date.now() - 7 * 86400000), // Spread over the last day 7 days
-        type: i % 2 === 0 ? 'CREDIT' : 'DEBIT',
-        status:
+      .map((_, i) => {
+        const daysAgo = Math.floor(Math.random() * 7);
+        const date = new Date(Date.now() - daysAgo * 86400000);
+
+        const status =
           i % 3 === 0
             ? Status.SUCCESS
             : i % 2 === 0
               ? Status.PENDING
-              : Status.FAILED,
-        remark: i % 2 === 0 ? 'Transaction processed successfully' : null,
-      }));
+              : Status.FAILED;
+
+        const remark =
+          status === Status.SUCCESS
+            ? 'Transaction successful'
+            : status === Status.PENDING
+              ? 'Transaction pending'
+              : 'Transaction failed';
+
+        return {
+          userId,
+          reference: `REF${i + 1}-${userId.slice(0, 6)}`,
+          amount: Math.floor(Math.random() * 100) * 1000,
+          date,
+          type: i % 2 === 0 ? 'CREDIT' : 'DEBIT',
+          status,
+          remark,
+        };
+      });
 
     await this.prisma.transaction.createMany({ data: transactions });
   }
