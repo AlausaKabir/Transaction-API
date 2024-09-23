@@ -26,7 +26,7 @@ async function bootstrap() {
       #################################################
         🛡  ${keys.appName} API is running! Access URLs:
         🏠 HomePage:      ${keys.appUrl}
-        📄 Swagger Docs: ${keys.appUrl}/api-docs
+        📄 Documentation: ${keys.appUrl}/api-docs
         #################################################
       `);
   });
