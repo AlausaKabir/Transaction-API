@@ -10,9 +10,6 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const keys = app.get(ConstantService);
-  Logger.log(`NODE_ENV: ${keys.isProduction ? 'production' : 'development'}`);
-  Logger.log(`APP_NAME: ${keys.appName}`);
-  Logger.log(`APP_PROD_URL: ${keys.appUrl}`);
 
   const config = new DocumentBuilder()
     .setTitle('Transaction API')
