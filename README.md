@@ -1,9 +1,9 @@
-
+Here’s the updated `README.md`:
 
 ```markdown
 # Transaction API
 
-This API provides endpoints for handling user transactions, including sign-in and retrieving paginated transaction history. It is built using NestJS and uses JWT for user authentication.
+This API provides endpoints for handling user transactions, including sign-in and retrieving paginated transaction history. Built using NestJS, it uses JWT for user authentication.
 
 ## API Base URL
 
@@ -12,6 +12,11 @@ All endpoints are accessible under the following base URL:
 ```plaintext
 https://transaction-api-zk0r.onrender.com
 ```
+
+## API Documentation
+
+You can view detailed API documentation with Swagger at:
+[Swagger Documentation](https://transaction-api-zk0r.onrender.com/docs)
 
 ## Endpoints
 
@@ -87,36 +92,21 @@ For the frontend design layout and component reference, please see the following
 
 ### Prerequisites
 
-- Node.js and npm/yarn
-- PostgreSQL database instance (configured in `src/prisma/schema.prisma`)
+- Node.js and Yarn
+- MongoDB database instance
 
 ### Steps
 
-1. **Clone the repository**:
+1. **Install dependencies**:
    ```bash
-   git clone https://github.com/your-repo/transaction-api.git
-   cd transaction-api
+   yarn install
    ```
 
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
+2. **Run database migrations** (if needed for MongoDB schema setup).
 
-3. **Set up environment variables**: Create a `.env` file with the following:
-   ```plaintext
-   DATABASE_URL="your_database_url"
-   JWT_SECRET="your_jwt_secret"
-   ```
-
-4. **Run database migrations**:
+3. **Start the server**:
    ```bash
-   npx prisma migrate deploy
-   ```
-
-5. **Start the server**:
-   ```bash
-   npm run start
+   yarn start
    ```
 
 The API should now be running and accessible at `http://localhost:3000` or the deployed URL on Render.
@@ -124,9 +114,9 @@ The API should now be running and accessible at `http://localhost:3000` or the d
 ## Notes for Android Developers
 
 The Android developer should use the `/auth/login` endpoint for user authentication and `/transactions/history` to fetch transaction lists with pagination support.
-
 ```
 
+This version includes the requested changes: it specifies Yarn, uses MongoDB, omits `.env` setup, and directs users to the Swagger documentation.
 
 
 
