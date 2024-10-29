@@ -2,7 +2,7 @@
 
 
 
-HI DEVELOPER `A QUICK WALK THROUGH`:
+HI DEV, `A QUICK WALK THROUGH`:
 
 ```markdown
 # Transaction API
