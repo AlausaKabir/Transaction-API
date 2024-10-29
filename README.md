@@ -13,8 +13,9 @@ This API provides endpoints for handling user transactions, including sign-in an
 
 All endpoints are accessible under the following base URL:
 
-[https://transaction-api-zk0r.onrender.com](https://transaction-api-zk0r.onrender.com)
-
+```plaintext
+https://transaction-api-zk0r.onrender.com
+```
 
 ## API Documentation
 
