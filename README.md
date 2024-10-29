@@ -116,6 +116,7 @@ The API should now be running and accessible at `http://localhost:3000` or the d
 The Android developer should use the `/auth/login` endpoint for user authentication and `/transactions/history` to fetch transaction lists with pagination support.
 ```
 
+This version includes the requested changes: it specifies Yarn, uses MongoDB, omits `.env` setup, and directs users to the Swagger documentation.
 
 
 
