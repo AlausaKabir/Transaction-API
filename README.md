@@ -2,7 +2,7 @@
 
 
 
-Here’s the updated `README.md`:
+HI DEVELOPER `A QUICK WALK THROUGH`:
 
 ```markdown
 # Transaction API
@@ -20,7 +20,7 @@ https://transaction-api-zk0r.onrender.com
 ## API Documentation
 
 You can view detailed API documentation with Swagger at:
-[Swagger Documentation](https://transaction-api-zk0r.onrender.com/docs)
+[Swagger Documentation](https://transaction-api-zk0r.onrender.com/api-docs)
 
 ## Endpoints
 
