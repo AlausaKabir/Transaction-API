@@ -1,4 +1,8 @@
-Your README file looks well-structured! Here’s a minor improvement to fix the formatting and ensure all links are clickable:
+
+
+
+
+HI DEVELOPER `A QUICK WALK THROUGH`:
 
 ```markdown
 # Transaction API
@@ -9,12 +13,14 @@ This API provides endpoints for handling user transactions, including sign-in an
 
 All endpoints are accessible under the following base URL:
 
-[https://transaction-api-zk0r.onrender.com](https://transaction-api-zk0r.onrender.com)
+```plaintext
+https://transaction-api-zk0r.onrender.com
+```
 
 ## API Documentation
 
 You can view detailed API documentation with Swagger at:
-[Swagger Documentation](https://transaction-api-zk0r.onrender.com/docs)
+[Swagger Documentation](https://transaction-api-zk0r.onrender.com/api-docs)
 
 ## Endpoints
 
@@ -113,5 +119,3 @@ The API should now be running and accessible at `http://localhost:3000` or the d
 
 The Android developer should use the `/auth/login` endpoint for user authentication and `/transactions/history` to fetch transaction lists with pagination support.
 ```
-
-This should render the links as clickable in Markdown viewers.
